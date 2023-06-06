@@ -11,7 +11,7 @@
   <title>Weather App</title>
   <style>
     .image-container {
-      margin-top: 10px;
+      margin-top: 0px;
       display: center;;
       align-items: center;
       justify-content: center;
@@ -26,7 +26,7 @@
       display: block;
     }
     .input-group{
-      margin-top:10px;
+      margin-top:5px;
       background-color: #499efe;
       opacity: .9;
     }
@@ -75,7 +75,6 @@
     }
     .card1{
       width: 250px;
-      margin: 0 auto;
     }
 
   </style>
@@ -133,12 +132,12 @@
   {% endif %}
 
   <br><br>
-  <div class="row">
+    <div class="row justify-content-around">
     {% if temp and feels_like %}
     <div class="col-md-2">
       <div class="card1 bg-custom-color mb-6">
         <div class="card-body">
-          <h4><img src="http://openweathermap.org/img/w/{{ icon }}.png" alt="Image" style="width:70px"></h4>
+          <h4><img src="http://openweathermap.org/img/w/{{ icon }}.png" alt="Image" style="width:60px"></h4>
           <h4><span class="badge badge-primary">Day:</span> <span class="value">{{ day }}</span></h4>
           <h4><span class="badge badge-primary">Temperature:</span> <span class="value">{{ temp }}</span></h4>
           <h4><span class="badge badge-primary">Feels Like:</span> <span class="value">{{ feels_like }}</span></h4>
@@ -160,7 +159,7 @@
     <div class="col-md-2">
       <div class="card1 bg-custom-color mb-6">
         <div class="card-body">
-          <h4><img src="http://openweathermap.org/img/w/{{ icon }}.png" alt="Image" style="width:70px"></h4>
+          <h4><img src="http://openweathermap.org/img/w/{{icon}}.png" alt="Image" style="width:60px"></h4>
           <h4><span class="badge badge-primary">Day:</span> <span class="value">{{ days.day }}</span></h4>
           <h4><span class="badge badge-primary">Temperature:</span> <span class="value">{{ days.temp }}</span></h4>
           <h4><span class="badge badge-primary">Feels Like:</span> <span class="value">{{ days.feels_like }}</span></h4>
