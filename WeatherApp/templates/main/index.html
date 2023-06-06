@@ -52,7 +52,7 @@
       margin-top: -30px;
       background-color: #499efe;
       opacity: .9;
-      border-radius: 3em;
+      border-radius: 2em;
     }
     .bg-cus-color {
       background-color: #499efe;
@@ -66,12 +66,16 @@
     }
     .api-card {
       position: absolute;
-      bottom: 20px;
+      top: 20px;
       right: 20px;
       opacity: .9;
     }
     .btn-long{
       width: 120px;
+    }
+    .card1{
+      width: 250px;
+      margin: 0 auto;
     }
 
   </style>
@@ -128,28 +132,47 @@
   </div>
   {% endif %}
 
-  <br> <br>
+  <br><br>
   <div class="row">
-    <div class="col d-flex justify-content-center">
+    {% if temp and feels_like %}
+    <div class="col-md-2">
       <div class="card1 bg-custom-color mb-6">
         <div class="card-body">
+          <h4><img src="http://openweathermap.org/img/w/{{ icon }}.png" alt="Image" style="width:70px"></h4>
+          <h4><span class="badge badge-primary">Day:</span> <span class="value">{{ day }}</span></h4>
           <h4><span class="badge badge-primary">Temperature:</span> <span class="value">{{ temp }}</span></h4>
           <h4><span class="badge badge-primary">Feels Like:</span> <span class="value">{{ feels_like }}</span></h4>
           <h4><span class="badge badge-primary">Forecast:</span> <span class="value">{{ main }}</span></h4>
-          <h4><span class="badge badge-primary">Description:</span> <span class="value">{{description}}</span> <img
-              src="http://openweathermap.org/img/w/{{icon}}.png" alt="Image" style="width:70px"></h4>
+          <h4><span class="badge badge-primary">Description:</span> <span class="value">{{ description }}</span></h4>
           <h4><span class="badge badge-primary">Clouds:</span> <span class="value">{{ clouds }}</span></h4>
           {% if rain %}
             <h4><span class="badge badge-primary">Rain:</span> <span class="value">{{ rain }}</span></h4>
           {% endif %}
           {% if snow %}
             <h4><span class="badge badge-primary">Snow:</span> <span class="value">{{ snow }}</span></h4>
-          {% endif%}
+          {% endif %}
         </div>
       </div>
     </div>
+    {% endif %}
+  
+    {% for days in forecasts %}
+    <div class="col-md-2">
+      <div class="card1 bg-custom-color mb-6">
+        <div class="card-body">
+          <h4><img src="http://openweathermap.org/img/w/{{ icon }}.png" alt="Image" style="width:70px"></h4>
+          <h4><span class="badge badge-primary">Day:</span> <span class="value">{{ days.day }}</span></h4>
+          <h4><span class="badge badge-primary">Temperature:</span> <span class="value">{{ days.temp }}</span></h4>
+          <h4><span class="badge badge-primary">Feels Like:</span> <span class="value">{{ days.feels_like }}</span></h4>
+          <h4><span class="badge badge-primary">Forecast:</span> <span class="value">{{ days.main }}</span></h4>
+          <h4><span class="badge badge-primary">Description:</span> <span class="value">{{ days.description }}</span> </h4>
+          <h4><span class="badge badge-primary">Clouds:</span> <span class="value">{{ days.clouds }}</span></h4>
+        </div>
+      </div>
+    </div>
+    {% endfor %}
   </div>
-  </div>  
+  </div>
 </body>
 
 </html>
