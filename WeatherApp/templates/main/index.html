@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+{% load static %}
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/5.3.0/morph/bootstrap.min.css" 
+    integrity="sha512-JVeRb+2zh4qZxNs8VoNBmnzmD1UlJLnsAq8DHiFe5IxSfrFoGXJl3Wpegi5XSSx60/tg7InigSzV92/bTN5ZnA==" 
+    crossorigin="anonymous" />
+  <title>Weather App</title>
+  <style>
+    .image-container {
+      margin-top: 10px;
+      display: center;;
+      align-items: center;
+      justify-content: center;
+    }
+    .image {
+      width: 100px;
+      margin-right: 10px;
+    }
+    .search-bar {
+      width: 450px;
+      margin: 0 auto;
+      display: block;
+    }
+    .input-group{
+      margin-top:10px;
+      background-color: #499efe;
+      opacity: .9;
+    }
+    .form-control {
+      color: #99ccff; /* Change the text color to green */
+    }
+  
+    .form-control::placeholder {
+      color: #99ccff;
+      opacity: 1;
+    }
+  
+    .form-control::value {
+      color: #99ccff;
+    }
+    .container {
+      margin-top: 20px;
+      text-align: center;
+      font-family: Arial, sans-serif;
+      font-size: 30px;
+    }
+    .bg-custom-color {
+      margin-top: -30px;
+      background-color: #499efe;
+      opacity: .9;
+      border-radius: 3em;
+    }
+    .bg-cus-color {
+      background-color: #499efe;
+      opacity: .9;
+    }
+    .badge-custom-color {
+      color: #99ccff;
+      }
+    .value {
+      color: #99ccff;
+    }
+    .api-card {
+      position: absolute;
+      bottom: 20px;
+      right: 20px;
+      opacity: .9;
+    }
+    .btn-long{
+      width: 120px;
+    }
+
+  </style>
+</head>
+
+<body>
+  <div class="api-card">
+    <div class="card bg-cus-color mb-6">
+      <div class="card-body">
+        <div class="container1 d-flex justify-content-between align-items-center">
+          <div class="text-right">
+            <a href="https://openweathermap.org" class="navbar-tech">OpenWeather - Get Your API</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <br /><br /> <br>
+  <div id="jumbotron" class="jumbotron" style="text-align: center; margin-top:-50px">
+    <div class="image-container">
+      <img src="{% static 'images/weather.png' %}" class="image">
+      <h1 class="display-5">Weather</h1>
+    </div>
+    <h5>Using Python Language and Django Framework</h5>
+  </div>
+
+  <div class="search-bar">
+    <form method="post">
+      {% csrf_token %}
+      <div class="input-group">
+        <input type="text" class="form-control" name="city" placeholder="Choose Your City ..." onkeyup="changeTextColor(event)" />
+        <div class="input-group-btn">
+          <button type="submit" class="btn btn-primary btn-long">Search</button>
+        </div>
+      </div>
+    </form>
+  </div>  
+  
+  <script>
+    function changeTextColor(event) {
+      var input = event.target;
+      var enteredText = input.value.trim();
+  
+      if (enteredText.length > 0) {
+        input.style.color = "#99ccff"; /* Change the text color to blue if there is entered text */
+      } 
+    }
+  </script>
+  
+  {% if city %}
+  <div class="container">
+    <h3>{{ city }}</h3>
+  </div>
+  {% endif %}
+
+  <br> <br>
+  <div class="row">
+    <div class="col d-flex justify-content-center">
+      <div class="card1 bg-custom-color mb-6">
+        <div class="card-body">
+          <h4><span class="badge badge-primary">Temperature:</span> <span class="value">{{ temp }}</span></h4>
+          <h4><span class="badge badge-primary">Feels Like:</span> <span class="value">{{ feels_like }}</span></h4>
+          <h4><span class="badge badge-primary">Forecast:</span> <span class="value">{{ main }}</span></h4>
+          <h4><span class="badge badge-primary">Description:</span> <span class="value">{{description}}</span> <img
+              src="http://openweathermap.org/img/w/{{icon}}.png" alt="Image" style="width:70px"></h4>
+          <h4><span class="badge badge-primary">Clouds:</span> <span class="value">{{ clouds }}</span></h4>
+          {% if rain %}
+            <h4><span class="badge badge-primary">Rain:</span> <span class="value">{{ rain }}</span></h4>
+          {% endif %}
+          {% if snow %}
+            <h4><span class="badge badge-primary">Snow:</span> <span class="value">{{ snow }}</span></h4>
+          {% endif%}
+        </div>
+      </div>
+    </div>
+  </div>
+  </div>  
+</body>
+
+</html>
