@@ -2,6 +2,8 @@
 
 This project is a weather application that utilizes the OpenWeather API to gather weather data. It is built using Django, a Python web framework, for data retrieval and processing, and HTML and CSS to create a webpage for displaying weather information based on user input (city name).
 
+![Imgur](https://i.imgur.com/mdWfoEa.png)
+
 ## Table of Contents
 - [Installation](#installation)
 - [Usage](#usage)
