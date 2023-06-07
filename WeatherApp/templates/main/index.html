@@ -125,7 +125,7 @@
     <form method="post">
       {% csrf_token %}
       <div class="input-group">
-        <input type="text" class="form-control" name="city" placeholder="Choose Your City ..." onkeyup="changeTextColor(event)" />
+        <input type="text" class="form-control" name="city" placeholder="Enter a Location" onkeyup="changeTextColor(event)" />
         <div class="input-group-btn">
           <button type="submit" class="btn btn-primary btn-long">Search</button>
         </div>
@@ -143,12 +143,19 @@
       } 
     }
   </script>
+
+  {% if error_message %}
+  <div class="container">
+    <h3>{{ error_message }}</h3>
+  </div>
+  {% endif %}
+  
   
   {% if city %}
   <div class="container">
     <h3>{{ city }}</h3>
   </div>
-  {% endif %}
+  
 
   <br><br>
     <div class="row justify-content-around">
@@ -190,6 +197,7 @@
     </div>
     {% endfor %}
   </div>
+  {% endif %}
   </div>
 </body>
 
