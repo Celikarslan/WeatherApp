@@ -31,7 +31,7 @@ def index(request):
             data['rain'] = str(list_of_data['rain']['1h'])
         if 'snow' in str(list_of_data['weather'][0]):
             data['snow'] = str(list_of_data['snow']['1h'])
-        for forecast in list_of_forecasts['list'][:-8:8]:
+        for forecast in list_of_forecasts['list'][::8]:
             timestamp = forecast['dt']
             day_name = datetime.datetime.fromtimestamp(timestamp).strftime("%A")
             forecasts.append({
@@ -43,7 +43,7 @@ def index(request):
                 "icon": str(forecast['weather'][0]['icon']),
                 "clouds": str(forecast['clouds']['all']),
             })
-        data['forecasts'] = forecasts
+        data['forecasts'] = forecasts[1:]
     else:
         data = {}
     return render(request, "main/index.html", data)

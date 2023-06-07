@@ -10,71 +10,90 @@
     crossorigin="anonymous" />
   <title>Weather App</title>
   <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    
     .image-container {
-      margin-top: 0px;
-      display: center;;
+      display: flex;
       align-items: center;
       justify-content: center;
     }
+    
     .image {
       width: 100px;
       margin-right: 10px;
     }
+    
     .search-bar {
-      width: 450px;
+      max-width: 450px;
       margin: 0 auto;
       display: block;
     }
-    .input-group{
-      margin-top:5px;
+    
+    .input-group {
+      margin-top: 5px;
       background-color: #499efe;
       opacity: .9;
     }
+    
     .form-control {
-      color: #99ccff; /* Change the text color to green */
+      color: #99ccff;
     }
-  
+    
     .form-control::placeholder {
       color: #99ccff;
       opacity: 1;
     }
-  
-    .form-control::value {
-      color: #99ccff;
-    }
+    
     .container {
       margin-top: 20px;
       text-align: center;
       font-family: Arial, sans-serif;
       font-size: 30px;
     }
+    
     .bg-custom-color {
       margin-top: -30px;
       background-color: #499efe;
       opacity: .9;
       border-radius: 2em;
     }
+    
     .bg-cus-color {
       background-color: #499efe;
       opacity: .9;
     }
+    
     .badge-custom-color {
       color: #99ccff;
-      }
+    }
+    
     .value {
       color: #99ccff;
     }
+    
     .api-card {
       position: absolute;
       top: 20px;
       right: 20px;
       opacity: .9;
     }
-    .btn-long{
+    
+    .btn-long {
       width: 120px;
     }
-    .card1{
-      width: 250px;
+    
+    .card1 {
+      width: 260px;
+    }
+    
+    .row.justify-content-around {
+      margin-left: 0px;
+      margin-right: 50px;
+      justify-content: space-between; /* Change the space between items */
     }
 
   </style>
@@ -159,7 +178,7 @@
     <div class="col-md-2">
       <div class="card1 bg-custom-color mb-6">
         <div class="card-body">
-          <h4><img src="http://openweathermap.org/img/w/{{icon}}.png" alt="Image" style="width:60px"></h4>
+          <h4><img src="http://openweathermap.org/img/w/{{days.icon}}.png" alt="Image" style="width:60px"></h4>
           <h4><span class="badge badge-primary">Day:</span> <span class="value">{{ days.day }}</span></h4>
           <h4><span class="badge badge-primary">Temperature:</span> <span class="value">{{ days.temp }}</span></h4>
           <h4><span class="badge badge-primary">Feels Like:</span> <span class="value">{{ days.feels_like }}</span></h4>
